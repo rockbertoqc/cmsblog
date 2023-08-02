@@ -1,0 +1,29 @@
+{% extends 'base_admin.html' %}
+{% block title %} Login {% endblock %}
+{% block content %} 
+
+<h1 class="mt-5 display-6">Panel de administrador</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Título</th>
+            <th>Categoría</th>
+            <th>Fecha</th>
+            <th>Borrar</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for category, post in query %}
+        <tr>
+            <td>{{ post.titulo }}</td>
+            <td>{{  category.categoria }}</td>
+            <td>{{  post.date }}</td>
+            <td>
+                <a href="{{ url_for('articulos.borrar_entrada', id=post.id) }}" class="btn btn-danger">Borrar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

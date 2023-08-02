@@ -1,0 +1,28 @@
+{% extends 'base_blog.html' %}
+{% block title %} Login {% endblock %}
+{% block content %} 
+
+<div class="row mt-5">
+    <div class="col-sm"></div>
+    <div class="col-sm">
+        <h1 class="dislpay-6 mt-5 text-center titulo-del-login">Ingresa tus datos</h1>
+        <div class="card mt-5 shadow px-3 py-3" style="background-color:#7C0366;">
+            <form action="{{ url_for('acceso.login') }}" method="post">
+                {{ formulario.hidden_tag() }}
+                {{ formulario.csrf_token() }}
+                <i class="bi bi-person-fill text-light"></i>
+                {{ formulario.username.label(class="text-light") }}
+                {{ formulario.username(class="form-control") }} <br>
+                <i class="bi bi-lock-fill text-light"></i>
+                {{ formulario.password.label(class="text-light") }}
+                {{ formulario.password(class="form-control") }}<br>
+                <div class="text-center">
+                    {{ formulario.submit(class="btn btn-light shadow px-5", style="color:#7C0366; font-weight:500;") }}
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-sm"></div>
+</div>
+
+{% endblock %}

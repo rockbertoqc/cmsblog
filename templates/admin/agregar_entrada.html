@@ -1,0 +1,36 @@
+{% extends 'base_admin.html'  %}
+{% block title  %}
+Agregar entrada
+{% endblock  %}
+
+
+
+{% block content  %}
+<h1 class="mt-5 display-6 text-center">Agregar entrada</h1>
+<div class="card mt-5 shadow px-4 py-4">
+    <form action="" method="post">
+        <div class="row">
+            <div class="col-sm">
+            {{ form.hidden_tag() }} 
+            {{ form.csrf_token() }}   
+            {{ form.titulo.label() }}
+            {{ form.titulo(class="form-control") }}
+            {{ form.body.label() }}
+            {{ form.body(class="form-control") }}
+            </div>
+            <div class="col-sm">
+            {{ form.categoria.label() }}
+            {{ form.categoria(class="form-select") }}
+            {{ form.tags.label() }}
+            {{ form.tags(class="form-control") }} <br>
+            <div class="text-center">
+                {{ form.enviar(class="btn btn-primary px-4 py-2") }}
+            </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+{{ ckeditor.load() }}
+{{ ckeditor.config(name='body') }}
+{% endblock  %}

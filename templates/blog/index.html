@@ -1,0 +1,39 @@
+{% extends 'base_blog.html'  %}
+
+{% macro resumen(content) %}
+    {% set pos = content.find('.') %}
+    {% if pos >= 0 %}
+        {{ content[:pos + 1] | safe }}
+    {% else %}
+        {{ content | safe }}
+    {% endif %}
+{% endmacro %}
+
+{% block title  %}
+Página principal
+{% endblock  %}
+
+
+{% block content  %}
+
+<div class="col mt-5">
+    <h1 class="text-center">AhuitzWorld</h1>
+    <h3 class="text-center">El mundo de Ahuitzotl</h3>
+
+    <div class="container">
+        <div class="mt-5 shadow">
+            <ol>
+                {% for category, post in consultas %}
+              
+                <li>
+                    <h4><a href="{{ url_for('blogview.single_post', titulo=post.uri_path(), id=post.id) }}">{{ post.titulo }}</a></h4>
+                    <p>{{ resumen(post.body) }}</p>    
+                </li>
+                
+                {% endfor %}
+            </ol>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

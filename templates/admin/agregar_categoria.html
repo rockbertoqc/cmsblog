@@ -1,0 +1,52 @@
+{% extends 'base_admin.html'  %}
+{% block title  %}
+Agregar categoría
+{% endblock  %}
+
+
+
+{% block content  %}
+
+<div class="row"><div class="col-sm">
+    <div class="card mt-5 py-3 px-3 shadow">
+        <h1 class="display-6">Agregar categoría</h1><br>
+        <form action="{{url_for('categoria.agregar_categoria')}}" method="post">
+            {{ formulario.hidden_tag() }}
+            {{ formulario.csrf_token() }}
+            {{ formulario.categoria.label(class="text-danger fs-3") }}
+            {{ formulario.categoria(class="form-control") }}<br>
+            <div class="row">
+                <div class="col"></div>
+                
+                <div class="col">{{ formulario.enviar(class="form-control btn btn-success") }}</div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="col-sm">
+    <table class="table mt-5">
+        <thead>
+            <tr>
+                <td class="text-center">Categoría</td>
+                <td class="text-center">Acciones</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in ver_categorias  %}
+            <tr>
+                <td style="padding-left: 35px; padding-top: 15px;">{{ item.categoria }}</td> 
+                <!--item es el elemento que viene de ver_categorias, categoria es el nombre del campo en la tabla Categorias-->
+                <td>
+                   <div class="text-center">
+                    <a href="{{ url_for('categoria.borrar_categoria', id=item.id) }}"><button class="btn btn-danger">Borrar</button></a>
+                   </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>    
+</div>
+
+</div>
+
+{% endblock  %}
